@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: api.mn.baby.watcher
+---
+testFramework: spock
+sourceLanguage: groovy
