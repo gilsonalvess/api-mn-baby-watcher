@@ -1,6 +1,7 @@
 package api.mn.baby.watcher.controller
 
 import api.mn.baby.watcher.service.NoiseService
+import io.micronaut.http.HttpStatus
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
 
@@ -13,7 +14,7 @@ class NoiseController {
     protected NoiseService noiseService
 
     @Get
-    String index() {
-        noiseService.testeString()
+    HttpStatus index() {
+        return HttpStatus.OK
     }
 }

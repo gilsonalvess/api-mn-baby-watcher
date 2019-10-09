@@ -1,10 +1,14 @@
 package api.mn.baby.watcher.model
 
-import java.time.LocalDate
-import java.time.LocalTime
+class Noise implements Serializable{
+    public String date
+    public String time
 
-class Noise {
-    LocalDate date
-    LocalTime time
-    Boolean isCry
+    Noise() {
+    }
+
+    Noise(String date, String time) {
+        this.date = date
+        this.time = time
+    }
 }

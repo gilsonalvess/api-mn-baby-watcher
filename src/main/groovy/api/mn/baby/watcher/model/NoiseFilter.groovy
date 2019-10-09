@@ -4,5 +4,5 @@ import java.time.LocalTime
 
 interface NoiseFilter {
     LocalTime getTimeInterval()
-    Boolean validateNoise()
+    Boolean noiseValidate()
 }

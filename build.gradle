@@ -43,6 +43,7 @@ dependencies {
 
     annotationProcessor "io.micronaut:micronaut-inject-java:1.2.3"
     compile "io.micronaut:micronaut-inject:1.2.3"
+    compile "joda-time:joda-time:2.10.4"
     testAnnotationProcessor "io.micronaut:micronaut-inject-java:1.2.3"
 }
 

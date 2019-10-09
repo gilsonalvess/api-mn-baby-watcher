@@ -1,5 +1,6 @@
 package api.mn.baby.watcher.service
 
+
 import api.mn.baby.watcher.model.NoiseFilter
 import io.micronaut.runtime.context.scope.Refreshable
 
@@ -14,12 +15,8 @@ class NoiseService implements NoiseFilter {
     }
 
     @Override
-    Boolean validateNoise() {
+    Boolean noiseValidate() {
         return true
-    }
-
-    String testeString(){
-        "Testando..."
     }
 
 }
