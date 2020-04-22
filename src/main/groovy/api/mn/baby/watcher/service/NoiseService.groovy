@@ -1,6 +1,5 @@
 package api.mn.baby.watcher.service
 
-
 import api.mn.baby.watcher.model.Noise
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
