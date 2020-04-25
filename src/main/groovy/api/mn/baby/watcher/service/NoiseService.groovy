@@ -1,5 +1,6 @@
 package api.mn.baby.watcher.service
 
+import api.mn.baby.watcher.FirebaseMessagingSnippets
 import api.mn.baby.watcher.model.Noise
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
@@ -16,9 +17,9 @@ import java.time.LocalTime
 @Context
 class NoiseService {
     private static List<LocalTime> timeList = []
+    private static FirebaseMessagingSnippets firebaseMessagingSnippets = new FirebaseMessagingSnippets()
 
     void noiseEventListener(DatabaseReference databaseReference) {
-
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {}
@@ -28,6 +29,9 @@ class NoiseService {
                 Noise noise = dataSnapshot.getValue(Noise.class)
                 log.debug("Event {}", "${noise.date} ${noise.time}")
                 LocalTime noiseTime = LocalTime.parse(noise.time.toString())
+                // TODO apenas para teste...
+                firebaseMessagingSnippets.sendToToken()
+
                 timeList.add(noiseTime)
                 if (timeList.size() == 5) {
                     noiseValidate(databaseReference)
@@ -52,6 +56,8 @@ class NoiseService {
         Long sizeListTime = timeList.size() - 1
         if (durationSeconds == sizeListTime) {
             log.info("Noise detected {} - Interval in Seconds {}", new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(new Date()), durationSeconds)
+            firebaseMessagingSnippets.sendToToken() // envia notificação para app
+            // TODO Notification dando certo o trecho de código abaixo se faz desnecessário
             databaseReference.child("alert").setValueAsync(true)
         } else {
             databaseReference.child("alert").setValueAsync(false)
