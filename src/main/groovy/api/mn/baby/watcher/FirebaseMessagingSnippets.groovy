@@ -1,9 +1,6 @@
 package api.mn.baby.watcher
 
-import com.google.firebase.messaging.FirebaseMessaging
-import com.google.firebase.messaging.FirebaseMessagingException
-import com.google.firebase.messaging.Message
-import com.google.firebase.messaging.Notification
+import com.google.firebase.messaging.*
 import groovy.util.logging.Slf4j
 
 @Slf4j
@@ -23,6 +20,12 @@ class FirebaseMessagingSnippets {
 
     }
 
+    void sendNotification() throws FirebaseMessagingException {
+        String response = FirebaseMessaging.getInstance().send(androidMessage())
+        log.info("Successfully sent message: " + response)
+
+    }
+
     void sendToTopic() throws FirebaseMessagingException {
         String topic = "topics/topic"
 
@@ -33,6 +36,23 @@ class FirebaseMessagingSnippets {
 
         String response = FirebaseMessaging.getInstance().send(message)
         log.info("Successfully sent message: " + response)
+    }
+
+    Message androidMessage() {
+        Message message = Message.builder()
+                .setAndroidConfig(AndroidConfig.builder()
+                        .setPriority(AndroidConfig.Priority.HIGH)
+                        .setNotification(AndroidNotification.builder()
+                                .setTitle("Baby Alert")
+                                .setBody("Seu bebê precisa de você")
+                                .setIcon("baby_crying_icon")
+                        //.setColor("#f45342")
+                                .build())
+                        .build())
+                .setTopic("detector")
+                .build()
+
+        return message
     }
 
 }

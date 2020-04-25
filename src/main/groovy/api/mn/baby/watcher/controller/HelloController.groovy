@@ -4,10 +4,10 @@ import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
 
-@Controller('/hello')
+@Controller('/')
 class HelloController {
 
-    @Get(produces = MediaType.TEXT_PLAIN)
+    @Get(produces = MediaType.APPLICATION_JSON)
     String index() {
         'Hello World'
     }

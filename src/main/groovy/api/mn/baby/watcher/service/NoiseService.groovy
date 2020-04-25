@@ -30,7 +30,7 @@ class NoiseService {
                 log.debug("Event {}", "${noise.date} ${noise.time}")
                 LocalTime noiseTime = LocalTime.parse(noise.time.toString())
                 // TODO apenas para teste...
-                firebaseMessagingSnippets.sendToToken()
+                firebaseMessagingSnippets.sendNotification()
 
                 timeList.add(noiseTime)
                 if (timeList.size() == 5) {
@@ -56,7 +56,7 @@ class NoiseService {
         Long sizeListTime = timeList.size() - 1
         if (durationSeconds == sizeListTime) {
             log.info("Noise detected {} - Interval in Seconds {}", new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(new Date()), durationSeconds)
-            firebaseMessagingSnippets.sendToToken() // envia notificação para app
+            firebaseMessagingSnippets.sendNotification() // envia notificação para app
             // TODO Notification dando certo o trecho de código abaixo se faz desnecessário
             databaseReference.child("alert").setValueAsync(true)
         } else {
