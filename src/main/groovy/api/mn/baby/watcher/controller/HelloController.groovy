@@ -9,6 +9,7 @@ class HelloController {
 
     @Get(produces = MediaType.APPLICATION_JSON)
     String index() {
+        //Todo implementar retorno com informações da api (nome do serviço e versão)
         'Hello World'
     }
 }

@@ -44,7 +44,7 @@ class FirebaseMessagingSnippets {
                         .setPriority(AndroidConfig.Priority.HIGH)
                         .setNotification(AndroidNotification.builder()
                                 .setTitle("Baby Alert")
-                                .setBody("Seu bebê precisa de você")
+                                .setBody("Seu bebê precisa de você!")
                                 .setIcon("baby_crying_icon")
                         //.setColor("#f45342")
                                 .build())

@@ -1,8 +1,8 @@
 package api.mn.baby.watcher
 
-import api.mn.baby.watcher.service.NoiseService
-import io.micronaut.runtime.Micronaut
+import api.mn.baby.watcher.repository.FirebaseConnection
 import groovy.transform.CompileStatic
+import io.micronaut.runtime.Micronaut
 
 @CompileStatic
 class Application {

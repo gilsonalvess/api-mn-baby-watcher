@@ -1,4 +1,4 @@
-package api.mn.baby.watcher
+package api.mn.baby.watcher.repository
 
 import api.mn.baby.watcher.service.NoiseService
 import com.google.auth.oauth2.GoogleCredentials
@@ -13,8 +13,6 @@ import javax.inject.Singleton
 @Slf4j
 @Singleton
 class FirebaseConnection {
-
-    private static DatabaseReference databaseReference
 
     static initialize() {
         try {
@@ -38,11 +36,11 @@ class FirebaseConnection {
 
     static initializeNoiseEventListener() {
         NoiseService noiseService = new NoiseService()
-        databaseReference = FirebaseDatabase.getInstance().getReference("noise_event")
+        DatabaseReference databaseReference = databaseReferenceInstance("noise_event")
         noiseService.noiseEventListener(databaseReference)
     }
 
-    static DatabaseReference databaseReferenceInstance() {
-        return databaseReference
+    static DatabaseReference databaseReferenceInstance(String path) {
+        return FirebaseDatabase.getInstance().getReference(path)
     }
 }

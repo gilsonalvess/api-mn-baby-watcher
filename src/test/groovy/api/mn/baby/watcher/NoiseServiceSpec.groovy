@@ -1,5 +1,6 @@
 package api.mn.baby.watcher
 
+import api.mn.baby.watcher.repository.FirebaseConnection
 import api.mn.baby.watcher.service.NoiseService
 import com.google.firebase.database.DatabaseReference
 import spock.lang.Specification
@@ -11,7 +12,7 @@ class NoiseServiceSpec extends Specification {
         NoiseService noiseService = NoiseService.newInstance()
         FirebaseConnection.initialize()
         FirebaseConnection.initializeNoiseEventListener()
-        DatabaseReference databaseReference = FirebaseConnection.databaseReferenceInstance()
+        DatabaseReference databaseReference = FirebaseConnection.databaseReferenceInstance("noise_event")
 
         when:
         noiseService.noiseEventListener(databaseReference)
