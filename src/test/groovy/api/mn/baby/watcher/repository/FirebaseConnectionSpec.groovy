@@ -1,11 +1,10 @@
-package api.mn.baby.watcher
+package api.mn.baby.watcher.repository
 
-import api.mn.baby.watcher.repository.FirebaseConnection
 import api.mn.baby.watcher.service.NoiseService
 import com.google.firebase.database.DatabaseReference
 import spock.lang.Specification
 
-class NoiseServiceSpec extends Specification {
+class FirebaseConnectionSpec extends Specification {
 
     void 'test connection firebase'() {
         setup:
@@ -24,5 +23,4 @@ class NoiseServiceSpec extends Specification {
         databaseReference.repo.repoInfo.namespace == 'baby-detector'
 
     }
-
 }

@@ -1,4 +1,4 @@
-package api.mn.baby.watcher
+package api.mn.baby.watcher.service
 
 import com.google.firebase.messaging.*
 import groovy.util.logging.Slf4j
@@ -21,7 +21,9 @@ class FirebaseMessagingSnippets {
     }
 
     void sendNotification() throws FirebaseMessagingException {
-        String response = FirebaseMessaging.getInstance().send(androidMessage())
+        String response = FirebaseMessaging.getInstance().send(
+                androidMessage('Baby Alert', 'Seu bebê precisa de você!', 'baby_crying_icon')
+        )
         log.info("Successfully sent message: " + response)
 
     }
@@ -38,14 +40,14 @@ class FirebaseMessagingSnippets {
         log.info("Successfully sent message: " + response)
     }
 
-    Message androidMessage() {
+    Message androidMessage(String title, String body, String icon = null) {
         Message message = Message.builder()
                 .setAndroidConfig(AndroidConfig.builder()
                         .setPriority(AndroidConfig.Priority.HIGH)
                         .setNotification(AndroidNotification.builder()
-                                .setTitle("Baby Alert")
-                                .setBody("Seu bebê precisa de você!")
-                                .setIcon("baby_crying_icon")
+                                .setTitle(title)
+                                .setBody(body)
+                                .setIcon(icon)
                         //.setColor("#f45342")
                                 .build())
                         .build())

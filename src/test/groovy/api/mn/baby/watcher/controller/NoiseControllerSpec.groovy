@@ -1,4 +1,4 @@
-package api.mn.baby.watcher
+package api.mn.baby.watcher.controller
 
 import io.micronaut.http.HttpRequest
 import io.micronaut.http.client.HttpClient
@@ -6,10 +6,11 @@ import io.micronaut.http.client.annotation.Client
 import io.micronaut.runtime.server.EmbeddedServer
 import io.micronaut.test.annotation.MicronautTest
 import spock.lang.Specification
+
 import javax.inject.Inject
 
 @MicronautTest
-class HelloControllerSpec extends Specification {
+class NoiseControllerSpec extends Specification{
     @Inject
     EmbeddedServer embeddedServer
 
@@ -17,9 +18,9 @@ class HelloControllerSpec extends Specification {
     @Client("/")
     HttpClient client
 
-    void "test hello world response"() {
+    void "test noise response"() {
         expect:
         client.toBlocking()
-                .retrieve(HttpRequest.GET('/hello')) == "Hello World"
+                .retrieve(HttpRequest.GET('/noise')) == "Testando..."
     }
 }

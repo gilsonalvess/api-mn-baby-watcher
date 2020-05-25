@@ -1,6 +1,6 @@
 package api.mn.baby.watcher.service
 
-import api.mn.baby.watcher.FirebaseMessagingSnippets
+
 import api.mn.baby.watcher.model.AppSettings
 import api.mn.baby.watcher.model.Noise
 import api.mn.baby.watcher.repository.FirebaseConnection
@@ -59,10 +59,12 @@ class NoiseService {
         if (durationSeconds == sizeListTime) {
             log.info("Noise detected {} - Interval in Seconds {}", new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(new Date()), durationSeconds)
             firebaseMessagingSnippets.sendNotification()
+            AlertService.syncFirebaseAlert()
+
         }
     }
 
-    private static void getSettingsAlerts() {
+    private static AppSettings getSettingsAlerts() {
         DatabaseReference refSettings = FirebaseConnection.databaseReferenceInstance("settings")
 
         refSettings.addValueEventListener(new ValueEventListener() {
@@ -76,5 +78,6 @@ class NoiseService {
             @Override
             void onCancelled(DatabaseError error) {}
         })
+        return appSettings
     }
 }
