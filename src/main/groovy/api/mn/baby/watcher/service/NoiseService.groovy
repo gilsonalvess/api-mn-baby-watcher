@@ -1,19 +1,16 @@
 package api.mn.baby.watcher.service
 
-
 import api.mn.baby.watcher.model.AppSettings
 import api.mn.baby.watcher.model.Noise
 import api.mn.baby.watcher.repository.FirebaseConnection
 import com.google.firebase.database.*
 import groovy.util.logging.Slf4j
-import io.micronaut.context.annotation.Context
 
 import java.text.SimpleDateFormat
 import java.time.Duration
 import java.time.LocalTime
 
 @Slf4j
-@Context
 class NoiseService {
     private static List<LocalTime> timeList = []
     private static FirebaseMessagingSnippets firebaseMessagingSnippets = new FirebaseMessagingSnippets()
